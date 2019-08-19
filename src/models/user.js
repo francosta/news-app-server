@@ -41,7 +41,15 @@ const userSchema = new mongoose.Schema(
         if (validator.contains(value, "password")) {
           throw new Error("The password cannot contain the word 'password'");
         }
-      }
+      },
+      tokens: [
+        {
+          token: {
+            type: String,
+            required: true
+          }
+        }
+      ]
     },
     profilePicture: {
       type: Buffer
