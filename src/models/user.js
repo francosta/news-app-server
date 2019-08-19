@@ -1,4 +1,4 @@
-// Created the user model.
+// Create the user model.
 
 const mongoose = require("mongoose");
 
