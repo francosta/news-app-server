@@ -5,12 +5,15 @@
   "main": "index.js",
   "scripts": {
     "start": "node src/index.js",
-    "dev": "nodemon src/index.js"
+    "dev": "nodemon src/index.js",
+    "db-connect": "/Users/francisco/mongodb/bin/mongod --dbpath=/Users/francisco/mongodb-data"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "mongodb": "^3.3.0",
+    "mongoose": "^5.6.9"
   },
   "devDependencies": {
     "nodemon": "^1.19.1"
