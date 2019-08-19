@@ -1,6 +1,9 @@
 // Create the user model.
 
 const mongoose = require("mongoose");
+onst validator = require("validator");
+const bcrypt = require("bcryptjs");
+const jwt = require("jsonwebtoken");
 
 const userSchema = new mongoose.Schema(
   {
