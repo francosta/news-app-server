@@ -2,15 +2,16 @@ const express = require("express");
 const router = new express.Router();
 const User = require("../models/user");
 
-//Signup user
+//Create user
 router.post("/users", async (req, res) => {
   const user = new User(req.body);
 
   try {
-    await user.save();
-    res.status(201).send(user);
+    const response = await user.save();
+
+    res.status(201).send(response);
   } catch (error) {
-    res.send(400).send(error);
+    res.status(400).send(error);
   }
 });
 
