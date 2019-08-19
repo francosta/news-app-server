@@ -1,26 +1,47 @@
 // Create the user model.
 
 const mongoose = require("mongoose");
-onst validator = require("validator");
+const validator = require("validator");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 
 const userSchema = new mongoose.Schema(
   {
     firstName: {
-      type: String
+      type: String,
+      required: true,
+      trim: true
     },
     lastname: {
-      type: String
+      type: String,
+      required: true,
+      trim: true
     },
     email: {
-      type: String
+      type: String,
+      required: true,
+      unique: true,
+      trim: true,
+      lowercase: true,
+      validate(value) {
+        if (!validator.isEmail(value)) {
+          throw new Error("Email is invalid.");
+        }
+      }
     },
     age: {
       type: Number
     },
     password: {
-      type: String
+      type: String,
+      required: true,
+      trim: true,
+      minlength: 7,
+      validate(value) {
+        if (validator.contains(value, "password")) {
+          throw new Error("The password cannot contain the word 'password'");
+        }
+      }
     },
     profilePicture: {
       type: Buffer
