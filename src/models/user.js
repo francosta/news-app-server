@@ -76,7 +76,9 @@ userSchema.methods.generateAuthToken = async function() {
     { _id: user.id.toString() },
     process.env.JWT_SECRET
   );
+  console.log(token);
   user.tokens = user.tokens.concat({ token });
+  console.log(user);
   await user.save();
   return token;
 };

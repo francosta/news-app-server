@@ -3,6 +3,7 @@
 // Otherwise we would not be able to set up tests that made requests without them actually being 'heard' by the server.
 const app = require("./app");
 const port = 3000;
+const jwt = require("jsonwebtoken");
 
 app.listen(port, () => {
   console.log("The server is running on port " + port);
