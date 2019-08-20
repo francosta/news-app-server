@@ -41,16 +41,16 @@ const userSchema = new mongoose.Schema(
         if (validator.contains(value, "password")) {
           throw new Error("The password cannot contain the word 'password'");
         }
-      },
-      tokens: [
-        {
-          token: {
-            type: String,
-            required: true
-          }
-        }
-      ]
+      }
     },
+    tokens: [
+      {
+        token: {
+          type: String,
+          required: true
+        }
+      }
+    ],
     profilePicture: {
       type: Buffer
     }
@@ -76,9 +76,7 @@ userSchema.methods.generateAuthToken = async function() {
     { _id: user.id.toString() },
     process.env.JWT_SECRET
   );
-  console.log(token);
   user.tokens = user.tokens.concat({ token });
-  console.log(user);
   await user.save();
   return token;
 };
