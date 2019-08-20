@@ -98,6 +98,17 @@ userSchema.statics.findByCredentials = async (email, password) => {
   return user;
 };
 
+// Return user object wihtout all information
+userSchema.methods.toJSON = function() {
+  const user = this;
+  const userObject = user.toObject();
+
+  delete userObject.password;
+  delete userObject.tokens;
+  delete userObject.profilePicture;
+  return userObject;
+};
+
 const User = mongoose.model("User", userSchema);
 
 module.exports = User;
