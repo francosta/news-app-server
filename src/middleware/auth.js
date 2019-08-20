@@ -4,7 +4,6 @@ const User = require("../models/user");
 const auth = async (req, res, next) => {
   try {
     //Get token, if it exists in the request header. If so, it means that the user was logged in previously.
-    console.log(req);
     const token = req.header("Authorization").replace("Bearer ", "");
     //Decode the token in the header - Remember that this token will include the user's ID as well.
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
