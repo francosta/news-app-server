@@ -51,6 +51,28 @@ router.get("/users/me", auth, async (req, res) => {
 });
 
 //Update user
+router.patch("/users/me", auth, async (req, res) => {
+  const user = req.user;
+  const updates = Object.keys(req.body);
+  const allowedUpdates = ["firstName", "lastName", "email", "age", "password"];
+  const isAllowedUpdate = updates.every(update =>
+    allowedUpdates.includes(update)
+  );
+
+  if (!isAllowedUpdate) {
+    return res
+      .status(400)
+      .send({ error: "The property updated cannot be changed." });
+  }
+
+  try {
+    updates.forEach(update => (user[update] = req.body[update]));
+    await user.save();
+    res.send(user);
+  } catch (error) {
+    res.status(400).send(error);
+  }
+});
 
 //Delete user
 router.delete("/users/me", auth, async (req, res) => {
