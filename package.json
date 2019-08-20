@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node src/index.js",
     "dev": "nodemon src/index.js",
-    "db-connect": "/Users/francisco/mongodb/bin/mongod --dbpath=/Users/francisco/mongodb-data"
+    "db-connect": "/Users/fran/mongodb/bin/mongod --dbpath=/Users/fran/mongodb-data"
   },
   "author": "",
   "license": "ISC",

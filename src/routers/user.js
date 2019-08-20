@@ -8,11 +8,17 @@ router.post("/users", async (req, res) => {
 
   try {
     const response = await user.save();
+    const token = user.generateAuthToken();
 
-    res.status(201).send(response);
+    res.status(201).send({ response, token });
   } catch (error) {
     res.status(400).send(error);
   }
 });
+
+// //Get user
+// router.get("/users/me", async(req, res) => {
+//   const user = await User.findById()
+// })
 
 module.exports = router;
