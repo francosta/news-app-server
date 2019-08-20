@@ -32,12 +32,27 @@ router.post("/users/login", async (req, res) => {
   }
 });
 
+//Logout user
+router.post("/users/logout", auth, async (req, res) => {
+  try {
+    req.user.tokens = req.user.tokens.filter(
+      token => token.token !== req.token
+    );
+    await req.user.save();
+    res.send();
+  } catch (error) {
+    res.status(500).send(error);
+  }
+});
+
 //Get user
 router.get("/users/me", auth, async (req, res) => {
   res.send(req.user);
 });
 
-//Delete user account
+//Update user
+
+//Delete user
 router.delete("/users/me", auth, async (req, res) => {
   try {
     await req.user.remove();
