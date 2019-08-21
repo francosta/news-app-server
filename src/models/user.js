@@ -53,7 +53,21 @@ const userSchema = new mongoose.Schema(
     ],
     profilePicture: {
       type: Buffer
-    }
+    },
+    countries: [
+      {
+        country: {
+          type: String
+        }
+      }
+    ],
+    categories: [
+      {
+        category: {
+          type: String
+        }
+      }
+    ]
   },
   { timestamps: true }
 );
