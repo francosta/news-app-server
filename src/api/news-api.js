@@ -1,4 +1,4 @@
-const fetch = require("node-fetch");
+const fetch = require('node-fetch');
 const apiKey = process.env.NEWS_API_KEY;
 
 const getHeadlines = () => {
@@ -8,5 +8,3 @@ const getHeadlines = () => {
     .then(resp => resp.json())
     .then(resp => console.log(resp));
 };
-
-getHeadlines();
